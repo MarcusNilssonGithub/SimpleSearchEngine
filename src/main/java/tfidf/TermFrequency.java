@@ -1,4 +1,4 @@
-package searchengine;
+package tfidf;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,8 +1,8 @@
 package main;
 
-import searchengine.Document;
-import searchengine.ScoredDocument;
-import searchengine.SearchEngine;
+import document.Document;
+import search.Searcher;
+import tfidf.TFIDFEngine;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,17 +21,15 @@ public class Main {
         documents.add(doc2);
         documents.add(doc3);
 
-        SearchEngine searchEngine = new SearchEngine(documents);
-        Collection<ScoredDocument> resultsBrown = searchEngine.searchTerm("brown");
-        Collection<ScoredDocument> resultsFox = searchEngine.searchTerm("fox");
-        Collection<ScoredDocument> resultsDog = searchEngine.searchTerm("dog");
+        TFIDFEngine engine = new TFIDFEngine();
+        Searcher searcher = new Searcher(engine, documents);
 
-        System.out.println("Brown: " + resultString(resultsBrown));
-        System.out.println("Fox: " + resultString(resultsFox));
-        System.out.println("Dog: " + resultString(resultsDog));
-    }
+        Collection<Document> resultsBrown = searcher.searchTerm("brown");
+        Collection<Document> resultsFox = searcher.searchTerm("fox");
+        Collection<Document> resultsDog = searcher.searchTerm("dog");
 
-    public static String resultString(Collection<ScoredDocument> results) {
-        return results.stream().map(ScoredDocument::toString).collect(Collectors.joining(", "));
+        System.out.println("Brown: " + resultsBrown);
+        System.out.println("Fox: " + resultsFox);
+        System.out.println("Dog: " + resultsDog);
     }
 }

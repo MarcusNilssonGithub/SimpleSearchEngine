@@ -1,4 +1,7 @@
-package searchengine;
+package tfidf;
+
+import document.Document;
+import text.TextNormalizer;
 
 public class TermFrequencyCalculator {
 

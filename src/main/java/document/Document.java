@@ -1,4 +1,4 @@
-package searchengine;
+package document;
 
 public class Document {
     private String name;

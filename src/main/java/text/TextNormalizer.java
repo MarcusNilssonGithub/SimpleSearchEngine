@@ -1,4 +1,4 @@
-package searchengine;
+package text;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,8 @@
-package searchengine;
+package tfidf;
 
+import document.Document;
 import org.junit.jupiter.api.Test;
+import tfidf.TermFrequencyCalculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
