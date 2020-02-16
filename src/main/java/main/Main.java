@@ -1,7 +1,7 @@
 package main;
 
 import searchengine.Document;
-import searchengine.Result;
+import searchengine.ScoredDocument;
 import searchengine.SearchEngine;
 
 import java.util.ArrayList;
@@ -22,16 +22,16 @@ public class Main {
         documents.add(doc3);
 
         SearchEngine searchEngine = new SearchEngine(documents);
-        Collection<Result> resultsBrown = searchEngine.searchTerm("brown");
-        Collection<Result> resultsFox = searchEngine.searchTerm("fox");
-        Collection<Result> resultsDog = searchEngine.searchTerm("dog");
+        Collection<ScoredDocument> resultsBrown = searchEngine.searchTerm("brown");
+        Collection<ScoredDocument> resultsFox = searchEngine.searchTerm("fox");
+        Collection<ScoredDocument> resultsDog = searchEngine.searchTerm("dog");
 
         System.out.println("Brown: " + resultString(resultsBrown));
         System.out.println("Fox: " + resultString(resultsFox));
         System.out.println("Dog: " + resultString(resultsDog));
     }
 
-    public static String resultString(Collection<Result> results) {
-        return results.stream().map(Result::toString).collect(Collectors.joining(", "));
+    public static String resultString(Collection<ScoredDocument> results) {
+        return results.stream().map(ScoredDocument::toString).collect(Collectors.joining(", "));
     }
 }
