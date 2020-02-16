@@ -16,7 +16,7 @@ class TermFrequencyCalculatorTest {
     void doDocumentLengthNormalization() {
         Double expected = 0.5;
         assertEquals(expected, TermFrequencyCalculator.calculateTermFrequency(new Document("DocumentName", "term1 term2")).get("term1"));
-        expected = 1/3.0;
+        expected = 1 / 3.0;
         assertEquals(expected, TermFrequencyCalculator.calculateTermFrequency(new Document("DocumentName", "term1 term2 term3")).get("term1"));
     }
 }
