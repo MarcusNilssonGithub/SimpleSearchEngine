@@ -7,7 +7,6 @@ import tfidf.TFIDFEngine;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Main {
 
@@ -21,8 +20,8 @@ public class Main {
         documents.add(doc2);
         documents.add(doc3);
 
-        TFIDFEngine engine = new TFIDFEngine();
-        Searcher searcher = new Searcher(engine, documents);
+        TFIDFEngine engine = new TFIDFEngine(documents);
+        Searcher searcher = new Searcher(engine);
 
         Collection<Document> resultsBrown = searcher.searchTerm("brown");
         Collection<Document> resultsFox = searcher.searchTerm("fox");

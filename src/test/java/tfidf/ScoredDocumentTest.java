@@ -2,7 +2,6 @@ package tfidf;
 
 import document.Document;
 import org.junit.jupiter.api.Test;
-import tfidf.ScoredDocument;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,5 +26,4 @@ class ScoredDocumentTest {
         ScoredDocument bigger = new ScoredDocument(new Document("DocumentName", ""), 2.0);
         assertTrue(smaller.compareTo(bigger) < 0);
     }
-
 }

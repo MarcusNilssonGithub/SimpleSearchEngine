@@ -1,7 +1,6 @@
 package text;
 
 import org.junit.jupiter.api.Test;
-import text.TextNormalizer;
 
 import java.util.Arrays;
 import java.util.List;

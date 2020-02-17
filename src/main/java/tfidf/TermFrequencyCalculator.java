@@ -13,9 +13,9 @@ public class TermFrequencyCalculator {
     }
 
     private static TermFrequency lengthNormalize(TermFrequency termFrequency) {
-        int wordCount = termFrequency.getWordCount();
+        TermFrequency termFrequencyLengthNormalized = new TermFrequency();
         termFrequency.getTerms()
-                .forEach(term -> termFrequency.set(term, termFrequency.get(term) / (double) wordCount));
-        return termFrequency;
+                .forEach(term -> termFrequencyLengthNormalized.set(term, termFrequency.get(term) / termFrequency.getTermCount()));
+        return termFrequencyLengthNormalized;
     }
 }

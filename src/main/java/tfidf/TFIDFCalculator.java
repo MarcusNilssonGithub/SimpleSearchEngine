@@ -26,6 +26,6 @@ public class TFIDFCalculator {
 
     private double idf(String term) {
         // Add 1 to the divisor to avoid division by zero, and to avoid the range 0 to 1 where Math.log is NaN
-        return Math.log(this.numberOfDocuments / 1.0 + (double) documentsContainingTerm.get(term).size());
+        return 1 + Math.log(this.numberOfDocuments / (double) documentsContainingTerm.get(term).size());
     }
 }

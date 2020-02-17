@@ -1,34 +1,33 @@
 package tfidf;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-public class TermFrequency extends HashMap<String, Double> {
-
-    private int wordCount;
-    private Set<String> terms;
+public class TermFrequency {
+    private Map<String, Double> termToValue;
 
     public TermFrequency() {
-        this.wordCount = 0;
-        this.terms = new HashSet<>();
+        termToValue = new HashMap<>();
     }
 
-    public int getWordCount() {
-        return wordCount;
+    public double getTermCount() {
+        return termToValue.values().stream().reduce(0.0, Double::sum);
     }
 
     public void increment(String term) {
-        this.merge(term, 1.0, Double::sum);
-        this.terms.add(term);
-        this.wordCount++;
+        termToValue.merge(term, 1.0, Double::sum);
     }
 
-    public void set(String term, Double frequency) {
-        this.put(term, frequency);
+    public void set(String term, double frequency) {
+        termToValue.put(term, frequency);
+    }
+
+    public double get(String term) {
+        return termToValue.get(term);
     }
 
     public Set<String> getTerms() {
-        return this.terms;
+        return this.termToValue.keySet();
     }
 }

@@ -6,21 +6,18 @@ import text.TextNormalizer;
 
 import java.util.*;
 
-public class TFIDFEngine implements Engine {
+public class TFIDFEngine extends Engine {
     private Map<Document, TermFrequency> documentTermFrequency;
     private Map<String, Set<Document>> documentsContainingTerm;
     private TFIDFCalculator tfidfCalculator;
 
-    public TFIDFEngine() {
+    public TFIDFEngine(Collection<Document> corpus) {
+        super(corpus);
         this.documentTermFrequency = new HashMap<>();
         this.documentsContainingTerm = new HashMap<>();
-    }
-
-    @Override
-    public void build(Collection<Document> corpus) {
-        populateTermFrequencies(corpus);
-        populateDocumentsContainingTerm(corpus);
-        this.tfidfCalculator = new TFIDFCalculator(this.documentTermFrequency, this.documentsContainingTerm, corpus.size());
+        populateTermFrequencies(this.getCorpus());
+        populateDocumentsContainingTerm(this.getCorpus());
+        this.tfidfCalculator = new TFIDFCalculator(this.documentTermFrequency, this.documentsContainingTerm, this.getCorpus().size());
     }
 
     @Override
@@ -54,6 +51,4 @@ public class TFIDFEngine implements Engine {
         Collections.sort(scoredDocuments, Collections.reverseOrder());
         return scoredDocuments;
     }
-
-
 }

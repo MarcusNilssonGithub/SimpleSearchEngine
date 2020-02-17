@@ -5,13 +5,10 @@ import document.Document;
 import java.util.Collection;
 
 public class Searcher {
-    private Collection<Document> corpus;
     private Engine engine;
 
-    public Searcher(Engine engine, Collection<Document> documents) {
-        this.corpus = documents;
+    public Searcher(Engine engine) {
         this.engine = engine;
-        this.engine.build(corpus);
     }
 
     public Collection<Document> searchTerm(String term) {
