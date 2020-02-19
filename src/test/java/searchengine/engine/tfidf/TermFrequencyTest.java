@@ -1,4 +1,4 @@
-package tfidf;
+package searchengine.engine.tfidf;
 
 import org.junit.jupiter.api.Test;
 

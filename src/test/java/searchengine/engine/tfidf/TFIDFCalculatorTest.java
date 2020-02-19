@@ -1,7 +1,7 @@
-package tfidf;
+package searchengine.engine.tfidf;
 
 
-import document.Document;
+import searchengine.document.Document;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,5 +1,6 @@
-package text;
+package searchengine.text;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -7,7 +8,10 @@ import java.util.stream.Collectors;
 
 public class TextNormalizer {
 
-    public static List<String> normalizedTerms(String text) {
+    public static List<String> normalizedTermsFromText(String text) {
+        if (text == null) {
+            return new ArrayList<>();
+        }
         return lowerCaseTerms(text).stream()
                 .filter(Optional::isPresent)
                 .map(Optional::get)

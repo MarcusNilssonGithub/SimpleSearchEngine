@@ -1,13 +1,13 @@
-package tfidf;
+package searchengine.engine.tfidf;
 
-import document.Document;
-import text.TextNormalizer;
+import searchengine.document.Document;
+import searchengine.text.TextNormalizer;
 
 public class TermFrequencyCalculator {
 
     public static TermFrequency calculateTermFrequency(Document document) {
         TermFrequency termFrequency = new TermFrequency();
-        TextNormalizer.normalizedTerms(document.getText())
+        TextNormalizer.normalizedTermsFromText(document.getText())
                 .forEach(term -> termFrequency.increment(term));
         return lengthNormalize(termFrequency);
     }

@@ -1,4 +1,4 @@
-package text;
+package searchengine.text;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ class TextNormalizerTest {
     @Test
     void termToLowerCase() {
         String expected = "abc";
-        assertEquals(expected, TextNormalizer.normalizedTerms("ABC").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("ABC").get(0));
     }
 
     @Test
@@ -20,23 +20,23 @@ class TextNormalizerTest {
         String expected1 = "abc";
         String expected2 = "def";
 
-        List<String> terms = TextNormalizer.normalizedTerms("abc def");
+        List<String> terms = TextNormalizer.normalizedTermsFromText("abc def");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
 
-        terms = TextNormalizer.normalizedTerms("abc,def");
+        terms = TextNormalizer.normalizedTermsFromText("abc,def");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
 
-        terms = TextNormalizer.normalizedTerms("abc.def");
+        terms = TextNormalizer.normalizedTermsFromText("abc.def");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
 
-        terms = TextNormalizer.normalizedTerms("abc:def");
+        terms = TextNormalizer.normalizedTermsFromText("abc:def");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
 
-        terms = TextNormalizer.normalizedTerms("abc/def");
+        terms = TextNormalizer.normalizedTermsFromText("abc/def");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
     }
@@ -45,7 +45,7 @@ class TextNormalizerTest {
     void toLowerCaseAndSplit() {
         String expected1 = "abc";
         String expected2 = "def";
-        List<String> terms = TextNormalizer.normalizedTerms("ABC DEF");
+        List<String> terms = TextNormalizer.normalizedTermsFromText("ABC DEF");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
     }
@@ -55,15 +55,15 @@ class TextNormalizerTest {
         String expected1 = "abc";
         String expected2 = "def";
 
-        List<String> terms = TextNormalizer.normalizedTerms("abc, def");
+        List<String> terms = TextNormalizer.normalizedTermsFromText("abc, def");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
 
-        terms = TextNormalizer.normalizedTerms("abc. def");
+        terms = TextNormalizer.normalizedTermsFromText("abc. def");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
 
-        terms = TextNormalizer.normalizedTerms("abc: def");
+        terms = TextNormalizer.normalizedTermsFromText("abc: def");
         assertEquals(expected1, terms.get(0));
         assertEquals(expected2, terms.get(1));
     }
@@ -71,28 +71,28 @@ class TextNormalizerTest {
     @Test
     void removePunctuationFromTerm() {
         String expected = "abc";
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc!").get(0));
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc.").get(0));
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc,").get(0));
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc?").get(0));
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc:").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc!").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc.").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc,").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc?").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc:").get(0));
     }
 
     @Test
     void removeSeveralNonAlphamericsFromEndOfTerm() {
         String expected = "abc";
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc!!").get(0));
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc..").get(0));
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc,,").get(0));
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc??").get(0));
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc::").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc!!").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc..").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc,,").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc??").get(0));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc::").get(0));
     }
 
     @Test
     void removeNonAlphamericAndSplitToLowerCaseTerms() {
         String expected1 = "abc";
         String expected2 = "efg";
-        List<String> words = TextNormalizer.normalizedTerms("ABC! EFG!");
+        List<String> words = TextNormalizer.normalizedTermsFromText("ABC! EFG!");
         assertEquals(expected1, words.get(0));
         assertEquals(expected2, words.get(1));
     }
@@ -100,27 +100,27 @@ class TextNormalizerTest {
     @Test
     void emptyStringReturnsEmptyList() {
         int expected = 0;
-        List<String> words = TextNormalizer.normalizedTerms("");
+        List<String> words = TextNormalizer.normalizedTermsFromText("");
         assertEquals(expected, words.size());
     }
 
     @Test
     void onlySpaceReturnsEmptyList() {
         int expected = 0;
-        List<String> words = TextNormalizer.normalizedTerms(" ");
+        List<String> words = TextNormalizer.normalizedTermsFromText(" ");
         assertEquals(expected, words.size());
     }
 
     @Test
     void onlyNonAlphamericReturnsEmptyList() {
         int expected = 0;
-        assertEquals(expected, TextNormalizer.normalizedTerms("!").size());
-        assertEquals(expected, TextNormalizer.normalizedTerms(".").size());
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("!").size());
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText(".").size());
     }
 
     @Test
     void normalizedTermsFromText() {
         List<String> expected = Arrays.asList("abc", "def", "ghi", "jkl");
-        assertEquals(expected, TextNormalizer.normalizedTerms("abc, DEF/ghi. Jkl"));
+        assertEquals(expected, TextNormalizer.normalizedTermsFromText("abc, DEF/ghi. Jkl"));
     }
 }

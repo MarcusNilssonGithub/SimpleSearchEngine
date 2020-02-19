@@ -1,4 +1,4 @@
-package document;
+package searchengine.document;
 
 public class Document {
     private String name;
@@ -15,5 +15,9 @@ public class Document {
 
     public String getText() {
         return this.text;
+    }
+
+    public String toString() {
+        return this.name + ": " + this.text;
     }
 }

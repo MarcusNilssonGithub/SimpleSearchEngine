@@ -1,8 +1,9 @@
-package search;
+package searchengine.engine;
 
-import document.Document;
+import searchengine.document.Document;
 
 import java.util.Collection;
+import java.util.List;
 
 public abstract class Engine {
     private Collection<Document> corpus;
@@ -15,5 +16,5 @@ public abstract class Engine {
         return this.corpus;
     }
 
-    public abstract Collection<Document> searchTerm(String Term);
+    public abstract List<Document> searchTerm(String Term);
 }

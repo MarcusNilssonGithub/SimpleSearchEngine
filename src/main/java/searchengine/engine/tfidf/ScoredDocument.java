@@ -1,6 +1,6 @@
-package tfidf;
+package searchengine.engine.tfidf;
 
-import document.Document;
+import searchengine.document.Document;
 
 import java.text.DecimalFormat;
 

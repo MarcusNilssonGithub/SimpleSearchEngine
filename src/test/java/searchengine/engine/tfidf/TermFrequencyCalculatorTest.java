@@ -1,6 +1,6 @@
-package tfidf;
+package searchengine.engine.tfidf;
 
-import document.Document;
+import searchengine.document.Document;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
