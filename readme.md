@@ -2,8 +2,10 @@
 A search engine that, provided with a list of documents, supports single term searches and returns a TF IDF sorted list of matching documents. Results also include the TF-IDF score for each document. 
 
 ## Test
-`cd SimpleSearchEngine`  
-`mvn test`
+```
+cd SimpleSearchEngine
+mvn test
+```
 
 ## Example
 The following documents are indexed:  
